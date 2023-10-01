@@ -1,5 +1,7 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 
 export default function Details() {
-  return <h1>Hi!</h1>
+  const { id } = useParams();
+  return <h1>{id}</h1>;
 }
