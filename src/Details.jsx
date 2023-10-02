@@ -12,7 +12,7 @@ function Details() {
   const { id } = useParams();
   const result = useQuery(["pet_details", id], fetchPet);
   const [showModal, setShowModal] = useState(false);
-  const [_, setAdoptedPet] = useContext(AdoptedPetContext);
+  const [, setAdoptedPet] = useContext(AdoptedPetContext);
   if (result.isLoading) {
     return (
       <div className="loading-pane">
@@ -35,7 +35,10 @@ function Details() {
             <div>
               <h1>Would you like to adopt {pet.name}</h1>
               <div className="buttons">
-                <button onClick={() => console.log("Yes")}>Yes</button>
+                <button onClick={() => {
+                  setAdoptedPet(pet);
+                  navigate("/");
+                }}>Yes</button>
                 <button onClick={() => setShowModal(false)}>No</button>
               </div>
             </div>
