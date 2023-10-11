@@ -6,13 +6,15 @@ import Carousel from "./Carousel";
 import AdoptedPetContext from "./AdoptedPetContext";
 import Modal from "./Modal";
 import ErrorBoundary from "./ErrorBoundary";
+import { PetAPIResponse } from "./APIResponsesTypes";
 
 function Details() {
   const navigate = useNavigate();
   const { id } = useParams();
-  const result = useQuery(["pet_details", id], fetchPet);
+  const result = useQuery<PetAPIResponse>(["pet_details", id], fetchPet);
   const [showModal, setShowModal] = useState(false);
-  const [, setAdoptedPet] = useContext(AdoptedPetContext);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_, setAdoptedPet] = useContext(AdoptedPetContext);
   if (result.isLoading) {
     return (
       <div className="loading-pane">
